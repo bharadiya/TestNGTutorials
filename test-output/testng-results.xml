@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2019-06-24T10:19:23Z" name="Suite" finished-at="2019-06-24T10:19:23Z" duration-ms="65">
+    <groups>
+      <group name="verifyConfig">
+        <method signature="A.m1()[pri:0, instance:A.A@1e66f1f5]" name="m1" class="A.A"/>
+      </group> <!-- verifyConfig -->
+    </groups>
+    <test started-at="2019-06-24T10:19:23Z" name="Test" finished-at="2019-06-24T10:19:23Z" duration-ms="65">
+      <class name="A.A">
+        <test-method signature="m1()[pri:0, instance:A.A@1e66f1f5]" started-at="2019-06-24T10:19:23Z" name="m1" finished-at="2019-06-24T10:19:23Z" duration-ms="19" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- m1 -->
+      </class> <!-- A.A -->
+      <class name="B.B">
+        <test-method signature="depend()[pri:0, instance:B.B@4e50c791]" started-at="2019-06-24T10:19:23Z" name="depend" depends-on-groups="verifyConfig" finished-at="2019-06-24T10:19:23Z" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- depend -->
+      </class> <!-- B.B -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
