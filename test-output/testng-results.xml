@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-06-28T13:08:07Z" name="Default suite" finished-at="2019-06-28T13:09:32Z" duration-ms="85837">
+  <suite started-at="2019-06-28T14:00:16Z" name="Default suite" finished-at="2019-06-28T14:01:20Z" duration-ms="64666">
     <groups>
     </groups>
-    <test started-at="2019-06-28T13:08:07Z" name="Default test" finished-at="2019-06-28T13:09:32Z" duration-ms="85837">
+    <test started-at="2019-06-28T14:00:16Z" name="Default test" finished-at="2019-06-28T14:01:20Z" duration-ms="64666">
       <class name="Scenarios.TimesOfIndia">
-        <test-method signature="clickAllLinks()[pri:0, instance:Scenarios.TimesOfIndia@6ab778a]" started-at="2019-06-28T13:08:07Z" name="clickAllLinks" finished-at="2019-06-28T13:09:32Z" duration-ms="85801" status="PASS">
+        <test-method signature="clickAllLinks()[pri:0, instance:Scenarios.TimesOfIndia@4e3958e7]" started-at="2019-06-28T14:00:16Z" name="clickAllLinks" finished-at="2019-06-28T14:01:20Z" duration-ms="64598" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clickAllLinks -->

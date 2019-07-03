@@ -21,28 +21,33 @@ public class TimesOfIndia {
 		driver.manage().window().maximize();
 		driver.get("https://timesofindia.indiatimes.com/");
 		try {
-			driver.findElement(By.xpath("//a[contains(text(),'click here to')]"));
+			driver.findElement(By.xpath("//a[contains(text(),'click here to')]")).click();
 		} finally {
-			Thread.sleep(10000);
-			List<WebElement> list = driver.findElements(
-					By.xpath("//*[contains(text(),'TOP NEWS STORIES')]/following-sibling::*[1]/child::li"));
-			System.out.println(list.size());
-			for (int i = 1; i <= list.size(); i++) {
-				String combination = Keys.chord(Keys.CONTROL, Keys.ENTER);
-				driver.findElement(By.xpath(
-						"//*[contains(text(),'TOP NEWS STORIES')]/following-sibling::*[1]/child::li[" + i + "]/a"))
-						.sendKeys(combination);
-				Thread.sleep(1000);
+			// Thread.sleep(10000);
+			try {
+				driver.findElement(By.xpath("//gwd-taparea[@id='close-button']")).click();
+			} catch (Exception e) {
+				e.getMessage();
+			} finally {
+				List<WebElement> list = driver.findElements(
+						By.xpath("//*[contains(text(),'TOP NEWS STORIES')]/following-sibling::*[1]/child::li"));
+				System.out.println(list.size());
+				for (int i = 1; i <= list.size(); i++) {
+					String combination = Keys.chord(Keys.CONTROL, Keys.ENTER);
+					driver.findElement(By.xpath(
+							"//*[contains(text(),'TOP NEWS STORIES')]/following-sibling::*[1]/child::li[" + i + "]/a"))
+							.sendKeys(combination);
+					Thread.sleep(1000);
+				}
+				Set<String> AllHandles = driver.getWindowHandles();
+				System.out.println(AllHandles.size());
+				ArrayList<String> A = new ArrayList<String>(AllHandles);
+				for (int i = A.size() - 1; i >= 0; i--) {
+					driver.switchTo().window(A.get(i));
+					Thread.sleep(1000);
+					System.out.println(driver.getTitle());
+				}
 			}
-			Set<String> AllHandles = driver.getWindowHandles();
-			System.out.println(AllHandles.size());
-			ArrayList<String> A = new ArrayList<String>(AllHandles);
-			for (int i = A.size() - 1; i >= 0; i--) {
-				driver.switchTo().window(A.get(i));
-				Thread.sleep(1000);
-				System.out.println(driver.getTitle());
-			}
-
 		}
 	}
 }
