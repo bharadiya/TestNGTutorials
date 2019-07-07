@@ -16,7 +16,7 @@ public class TimesOfIndia {
 
 	@Test
 	public void clickAllLinks() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "//home//sb//Desktop//BackUp//Downloads//chromedriver");
+		System.setProperty("webdriver.chrome.driver", "./Drivers//chromedriver");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://timesofindia.indiatimes.com/");

@@ -9,7 +9,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class GetDataFromExcel {
-	String path = "";
 	public XSSFWorkbook book, workbook;
 	FileInputStream fis = null;
 	public XSSFSheet sheet, outputsheet = null;
@@ -19,11 +18,11 @@ public class GetDataFromExcel {
 	/*
 	 * Parameterized constructor which takes excel file path as a String
 	 */
-	public GetDataFromExcel(String path, int index) throws IOException {
-		this.path = path;
-		this.fis = new FileInputStream(path);
-		this.book = new XSSFWorkbook(fis);
-		this.sheet = book.getSheetAt(index);
+	public GetDataFromExcel(String fis, int index) throws IOException {
+		
+		this.fis = new FileInputStream(fis);
+		book = new XSSFWorkbook(fis);
+		sheet = book.getSheetAt(index);
 	}
 
 	public int getRowsCount() {
