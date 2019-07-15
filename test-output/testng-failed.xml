@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Scenarios.TimesOfIndia">
+      <class name="RestAssuredLearning.GetWeatherDetails">
         <methods>
-          <include name="clickAllLinks"/>
+          <include name="getWeatherDetails"/>
         </methods>
-      </class> <!-- Scenarios.TimesOfIndia -->
+      </class> <!-- RestAssuredLearning.GetWeatherDetails -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

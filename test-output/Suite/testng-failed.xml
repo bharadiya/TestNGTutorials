@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT" allow-return-values="true">
+  <parameter name="browser" value="chrome"/>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="B.B">
+      <class name="TestNGPractice.B">
         <methods>
-          <include name="depend"/>
+          <include name="first"/>
+          <include name="beforemethod"/>
         </methods>
-      </class> <!-- B.B -->
-      <class name="A.A">
-        <methods>
-          <include name="m1"/>
-        </methods>
-      </class> <!-- A.A -->
+      </class> <!-- TestNGPractice.B -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

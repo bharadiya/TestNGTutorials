@@ -7,12 +7,12 @@ import org.testng.annotations.Test;
 
 public class Scenario {
 	@Test
-	public void third() {
+	private void third() {
 		System.out.println("third");
 	}
 
 	@Test
-	public void second() {
+	private void second() {
 		System.out.println("second");
 	}
 
