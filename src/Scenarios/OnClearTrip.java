@@ -19,7 +19,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class OnClearTrip {
 	public static WebDriver driver = null;
 	private static Scanner sc;
-
+	/*
+	 * End to End Testing 
+	 */
 	public static void onClearTrip()
 			throws InterruptedException, StaleElementReferenceException, NoSuchElementException {
 		System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver");
@@ -39,20 +41,20 @@ public class OnClearTrip {
 		WebElement To = driver.findElement(By.xpath("//input[@id='ToTag']"));
 		Thread.sleep(3000);
 		From.sendKeys("BOM");
+		 From.sendKeys(Keys.ARROW_DOWN);
 		Thread.sleep(3000);
-		// From.sendKeys(Keys.ARROW_DOWN);
 		From.sendKeys(Keys.ENTER);
 		To.sendKeys("DEL");
+		To.sendKeys(Keys.ARROW_DOWN);
 		Thread.sleep(3000);
-		// To.sendKeys(Keys.ARROW_DOWN);
 		To.sendKeys(Keys.ENTER);
 
 		// Task 3
 
 		WebElement FromDate = driver.findElement(By.xpath("//input[@id='DepartDate']"));
 		WebElement ToDate = driver.findElement(By.xpath("//input[@id='ReturnDate']"));
-		String[] fromdate = getNextDate(12);
-		String[] returnDate = getNextDate(13);
+		String[] fromdate = getNextDate(365);
+		String[] returnDate = getNextDate(400);
 		FromDate.click();
 		executeCalander(fromdate[0], fromdate[1], fromdate[2]);
 		Thread.sleep(1000);
@@ -154,7 +156,12 @@ public class OnClearTrip {
 	public static void main(String[] args) throws InterruptedException {
 		onClearTrip();
 	}
-
+	/* returns String [] in  dd mm yyyy
+	 * gets Next Date in String [] format
+	 * [0] -> date in String (dd) 
+	 * [1] -> month in String (mm)
+	 * [2] -> year in String (yyyy)
+	 */
 	public static String[] getNextDate(int noofDays) {
 		String[] ddmmyyyy = new String[3];
 		Calendar cal = Calendar.getInstance();
@@ -172,8 +179,12 @@ public class OnClearTrip {
 		ddmmyyyy[2] = res[5]; // year
 		return ddmmyyyy;
 	}
-
-	public static void executeCalander(String day, String month, String year) {
+	/*
+	 * Executes the calander by taking date , month and year in String formats
+	 * eg : for Dt 16th Aug, 2019  -> Following are the parameters to be passed "16","8","2019"
+	 *
+	 */
+	public static void executeCalander(String day, String month, String year) throws InterruptedException {
 		while (true) {
 			try {
 				driver.findElement(By.xpath(
@@ -182,10 +193,14 @@ public class OnClearTrip {
 				break;
 			} catch (Exception e) {
 				driver.findElement(By.xpath("(//a[@title='Next'])[2]")).click();
+				Thread.sleep(2000);
 			}
 		}
 	}
-
+	/*
+	 * Takes user Input 
+	 * returns String [] converted from Date in dd , mm , yyyy format
+	 */
 	public static String[] getDate() {
 		String[] ddmmyyyy = new String[3];
 		System.out.println("Enter date for onward journy");
