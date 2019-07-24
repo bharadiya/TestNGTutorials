@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,10 +20,8 @@ public class OnClearTrip {
 	public static WebDriver driver = null;
 	private static Scanner sc;
 
-	public static void main(String[] args) throws InterruptedException {
-		sc = new Scanner(System.in);
-		System.out.println("Enter day for onward journey");
-
+	public static void onClearTrip()
+			throws InterruptedException, StaleElementReferenceException, NoSuchElementException {
 		System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver");
 		driver = new ChromeDriver();
 
@@ -51,8 +51,8 @@ public class OnClearTrip {
 
 		WebElement FromDate = driver.findElement(By.xpath("//input[@id='DepartDate']"));
 		WebElement ToDate = driver.findElement(By.xpath("//input[@id='ReturnDate']"));
-		String[] fromdate = getNextDate(90);
-		String[] returnDate = getNextDate(95);
+		String[] fromdate = getNextDate(12);
+		String[] returnDate = getNextDate(13);
 		FromDate.click();
 		executeCalander(fromdate[0], fromdate[1], fromdate[2]);
 		Thread.sleep(1000);
@@ -60,24 +60,30 @@ public class OnClearTrip {
 		executeCalander(returnDate[0], returnDate[1], returnDate[2]);
 		WebElement searchBtn = driver.findElement(By.xpath("//input[@id='SearchBtn']"));
 		searchBtn.click();
-		Thread.sleep(15000);
+
+		// This is the Thread.sleep if I remove it I will get an exception wheareas if I
+		// use any explicit method still it throws an exception
+		// I dont want to use implicit waits
+		// But the same wait works in Task 6,7,8,9
+
+		Thread.sleep(25000);
 		explicitWait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(
-				"((//ul[@class='listView flights'])[2]//img[@title='Vistara'])[2]/parent::span/parent::th/preceding-sibling::th/child::input"))));
+				"((//ul[@class='listView flights'])[2]//img[@title='SpiceJet' or @title='GoAir'])[2]/parent::span/parent::th/preceding-sibling::th/child::input"))));
 		// Task 4
 
 		List<WebElement> numberofFlights = driver
-				.findElements(By.xpath("(//ul[@class='listView flights'])[2]//img[@title='Vistara']"));
+				.findElements(By.xpath("(//ul[@class='listView flights'])[2]//img[@title='SpiceJet']"));
 		System.out.println(numberofFlights.size());
 		if (numberofFlights.size() > 1) {
 			explicitWait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(
-					"((//ul[@class='listView flights'])[2]//img[@title='Vistara'])[2]/parent::span/parent::th/preceding-sibling::th/child::input"))));
+					"((//ul[@class='listView flights'])[2]//img[@title='SpiceJet' or @title='GoAir'])[2]/parent::span/parent::th/preceding-sibling::th/child::input"))));
 			driver.findElement(By.xpath(
-					"((//ul[@class='listView flights'])[2]//img[@title='Vistara'])[2]/parent::span/parent::th/preceding-sibling::th/child::input"))
+					"((//ul[@class='listView flights'])[2]//img[@title='SpiceJet'or @title='GoAir'])[2]/parent::span/parent::th/preceding-sibling::th/child::input"))
 					.click();
 			explicitWait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(
-					"((//ul[@class='listView flights'])[3]//img[@title='Vistara'])[2]/parent::span/parent::th/preceding-sibling::th/child::input"))));
+					"((//ul[@class='listView flights'])[3]//img[@title='SpiceJet'or @title='GoAir'])[2]/parent::span/parent::th/preceding-sibling::th/child::input"))));
 			driver.findElement(By.xpath(
-					"((//ul[@class='listView flights'])[3]//img[@title='Vistara'])[2]/parent::span/parent::th/preceding-sibling::th/child::input"))
+					"((//ul[@class='listView flights'])[3]//img[@title='SpiceJet'or @title='GoAir'])[2]/parent::span/parent::th/preceding-sibling::th/child::input"))
 					.click();
 			// Task 5
 
@@ -145,6 +151,10 @@ public class OnClearTrip {
 		}
 	}
 
+	public static void main(String[] args) throws InterruptedException {
+		onClearTrip();
+	}
+
 	public static String[] getNextDate(int noofDays) {
 		String[] ddmmyyyy = new String[3];
 		Calendar cal = Calendar.getInstance();
@@ -152,7 +162,11 @@ public class OnClearTrip {
 		Date nextdate = cal.getTime();
 		String nextDateinString = nextdate.toString();
 		String[] res = nextDateinString.split("\\s");
-		ddmmyyyy[0] = res[2]; // day
+		if (res[2].charAt(0) == '0') {
+			ddmmyyyy[0] = res[2].substring(1); // day
+		} else {
+			ddmmyyyy[0] = res[2]; // day
+		}
 		int month = nextdate.getMonth();
 		ddmmyyyy[1] = Integer.toString(month);
 		ddmmyyyy[2] = res[5]; // year
@@ -170,5 +184,16 @@ public class OnClearTrip {
 				driver.findElement(By.xpath("(//a[@title='Next'])[2]")).click();
 			}
 		}
+	}
+
+	public static String[] getDate() {
+		String[] ddmmyyyy = new String[3];
+		System.out.println("Enter date for onward journy");
+		ddmmyyyy[0] = sc.next();
+		System.out.println("Enter month for onward journy");
+		ddmmyyyy[1] = sc.next();
+		System.out.println("Enter year for onward journy");
+		ddmmyyyy[2] = sc.next();
+		return ddmmyyyy;
 	}
 }
