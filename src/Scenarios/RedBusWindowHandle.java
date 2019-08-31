@@ -25,10 +25,10 @@ public class RedBusWindowHandle {
 //		k.containsText("a", "India").sendKeys(combinationString);
 		Set<String> windowhandles = k.getWindowHandles();
 		System.out.println(windowhandles.size());
-		ArrayList<String>A=new ArrayList<String>(windowhandles);
-		for (int i = A.size()-1; i >= 0; i--) {
-			k.switchWindow(A.get(i));
-			k.applythreaddotsleep(500);
-		}
+//		ArrayList<String>A=new ArrayList<String>(windowhandles);
+//		for (int i = A.size()-1; i >= 0; i--) {
+//			k.switchWindow(A.get(i));
+//			k.applythreaddotsleep(500);
+//		}
 	}
 }

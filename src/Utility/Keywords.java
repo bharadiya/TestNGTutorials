@@ -1,7 +1,12 @@
 package Utility;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import javax.imageio.ImageIO;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,11 +15,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
+
 public class Keywords {
-	WebDriver driver;
+	static WebDriver driver;
 
 	public Keywords(WebDriver driver) {
-		this.driver = driver;
+		Keywords.driver = driver;
 	}
 
 	public  void applyImplicitWait() {
@@ -113,4 +122,16 @@ public class Keywords {
 	public void switchWindow(String windowname) {
 		driver.switchTo().window(windowname);
 	}
+	public void takeScreenShotEntireWebPage(AShot a,Screenshot sc) {
+		Date d = new Date();
+		sc = a.shootingStrategy(ShootingStrategies.viewportPasting(2000)).takeScreenshot(driver);
+		try {
+			ImageIO.write(sc.getImage(), "JPG", new File(
+					"./ScreenShotImages/" + d.toString() + ".jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

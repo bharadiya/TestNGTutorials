@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Timer;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -53,8 +52,8 @@ public class OnClearTrip {
 
 		WebElement FromDate = driver.findElement(By.xpath("//input[@id='DepartDate']"));
 		WebElement ToDate = driver.findElement(By.xpath("//input[@id='ReturnDate']"));
-		String[] fromdate = getNextDate(25);
-		String[] returnDate = getNextDate(36);
+		String[] fromdate = getNextDate(90);
+		String[] returnDate = getNextDate(105);
 		FromDate.click();
 		executeCalander(fromdate[0], fromdate[1], fromdate[2]);
 		Thread.sleep(1000);
@@ -69,10 +68,10 @@ public class OnClearTrip {
 		// But the same wait works in Task 6,7,8,9
 
 		// Task 4
-
-		String onwardJourneyflight = "((//ul[@class='listView flights'])[2]//img[@title='SpiceJet' or @title='GoAir'])[2]/parent::span/parent::th/preceding-sibling::th/child::input";
+		
+		String onwardJourneyflight = "((//ul[@class='listView flights'])[2]//img[@title='SpiceJet'])[2]/parent::span/parent::th/preceding-sibling::th/child::input";
 		artificialExplicitWait(onwardJourneyflight, driver);
-		String returnJourneyflight = "((//ul[@class='listView flights'])[3]//img[@title='SpiceJet'or @title='GoAir'])[2]/parent::span/parent::th/preceding-sibling::th/child::input";
+		String returnJourneyflight = "((//ul[@class='listView flights'])[3]//img[@title='GoAir'])[2]/parent::span/parent::th/preceding-sibling::th/child::input";
 		artificialExplicitWait(returnJourneyflight, driver);
 		List<WebElement> numberofFlights = driver.findElements(
 				By.xpath("(//ul[@class='listView flights'])[2]//img[@title='SpiceJet' or @title='GoAir']"));

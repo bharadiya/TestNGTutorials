@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="RestAssuredLearning.GetWeatherDetails">
+      <class name="B.C">
         <methods>
-          <include name="getWeatherDetails"/>
+          <include name="ABC"/>
         </methods>
-      </class> <!-- RestAssuredLearning.GetWeatherDetails -->
+      </class> <!-- B.C -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
